@@ -1,0 +1,16 @@
+version: "1.0"
+db: postgresql://alphabetter@localhost/alphabetter
+progress_bar: console
+data_dir: data
+championat_config: configs/championat.yaml
+line4bet_config: configs/line4bet.yaml
+fonbet_config: configs/fonbet.yaml
+dry: No
+log_level: warning
+log_file: null
+log_format:
+  console: '%(message)s'
+  file: '[%(levelname)s] %(message)s'
+n_processes: null
+leave_progress_bar: Yes
+table_format: simple

@@ -1,0 +1,81 @@
+#!/usr/bin/env python3
+
+import sys
+from pathlib import Path
+ 
+sys.path.append(str(Path(__file__).parent.parent))
+
+import argparse
+import logging as lg
+import asyncio
+
+from tqdm.contrib.logging import logging_redirect_tqdm
+from typing import Set, Type
+from alphabetter.core import *
+from alphabetter.config import default as config
+from subprograms import *
+
+
+SUBPROGRAM_CLASSES = {
+    ETLChampionatTournamentsSubprogram,
+    ETLLine4BetOddsSubprogram,
+    ETLFonbetOddsSubprogram,
+    RecommendBetsSubprogram,
+    CreateSchemaSubprogram,
+}
+
+
+async def main():
+    arg_parser = argparse.ArgumentParser(
+        formatter_class=lambda prog: argparse.RawTextHelpFormatter(
+            prog=prog,
+            max_help_position=30,
+            indent_increment=2,
+        ),
+    )
+    subprogram_arg_parsers = arg_parser.add_subparsers(
+        dest='subprogram',
+        help='subprogram name',
+        metavar='SUBPROGRAM' + ' ' * 15,
+    )
+    subprograms = {}
+    for subprogram_class in SUBPROGRAM_CLASSES:
+        command = subprogram_class.get_command()
+        help = subprogram_class.get_help()
+        subprogram_arg_parser = subprogram_arg_parsers.add_parser(command, help=help,
+            formatter_class=lambda prog: argparse.RawTextHelpFormatter(
+                prog=prog,
+                max_help_position=60,
+                indent_increment=2,
+            ),
+        )
+        subprogram = subprogram_class(subprogram_arg_parser)
+        subprograms[command] = subprogram
+    args = arg_parser.parse_args()
+    if args.log_file:
+        log_formatter_class = lg.Formatter
+        default_log_format = config.file_log_format
+    else:
+        log_formatter_class = ColoredLogFormatter
+        default_log_format = config.console_log_format
+    log_handler = lg.StreamHandler(args.log_file)
+    log_handler.setFormatter(log_formatter_class(fmt=args.log_format or default_log_format))
+    lg.basicConfig(
+        level=(args.log_level or config.log_level).upper(),
+        handlers=[log_handler],
+    )
+    subprogram = subprograms[args.subprogram]
+    subprogram_coro = subprogram(args)
+    if args.log_file:
+        await subprogram_coro
+    else:
+        with logging_redirect_tqdm():
+            await subprogram_coro
+
+
+if __name__ == '__main__':
+    try:
+        main_coro = main()
+        asyncio.run(main_coro)
+    except KeyboardInterrupt:
+        print('Interrupted by user.')

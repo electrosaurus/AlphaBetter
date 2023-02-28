@@ -1,0 +1,25 @@
+api_params:
+  sports:
+    Football: football
+  leagues:
+    Football:
+      Armenian Premier League: null
+      Austrian Football Bundesliga: 11976
+      Azerbaijan Premier League: null
+      Belgian Pro League: 12914
+      Bundesliga: 11916
+      Campeonato Brasileiro Série A: null
+      EFL Championship: 12018
+      Eredivisie: 12967
+      Erovnuli Liga: null
+      Ligue 1: 11920
+      La Liga: 11922
+      Premier League: 11918
+      Premier League Russia: 11935
+      Primeira Liga: 11939
+      Scottish Premier League: 11937
+      Segunda División: 11953
+      Serbian SuperLiga: 13047
+      Serie A: 11924
+      Super League Greece: 12081
+      Süper Lig: 12973

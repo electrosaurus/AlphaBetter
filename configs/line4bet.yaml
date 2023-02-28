@@ -1,0 +1,27 @@
+api_params:
+  sports:
+    Football: football
+  bookmakers:
+    Fonbet: Fonbet
+league_headers:
+  Football:
+    Armenian Premier League: [Футбол. Армения. Премьер-Лига]
+    Austrian Football Bundesliga: [Футбол. Австрия. Бундеслига]
+    Azerbaijan Premier League: [Футбол. Азербайджан. Премьер-Лига]
+    Belgian Pro League: [Футбол. Бельгия. Премьер-Лига]
+    Bundesliga: [Футбол. Германия. Бундеслига]
+    Campeonato Brasileiro Série A: [Футбол. Бразилия. Серия А]
+    EFL Championship: [Футбол. Англия. Чемпион-Лига]
+    Eredivisie: [Футбол. Нидерланды. Премьер-Лига]
+    Erovnuli Liga: [Футбол. Грузия. Суперлига]
+    Ligue 1: [Футбол. Франция. Премьер-Лига]
+    La Liga: [Футбол. Испания. Премьер-Лига]
+    Premier League: [Футбол. Англия. Премьер-Лига]
+    Premier League Russia: [Футбол. Россия. Премьер-Лига]
+    Primeira Liga: [Футбол. Португалия. Премьер-Лига]
+    Scottish Premier League: [Футбол. Шотландия. Премьер-Лига]
+    Segunda División: [Футбол. Испания. Сегунда]
+    Serbian SuperLiga: [Футбол. Сербия. Суперлига]
+    Serie A: [Футбол. Италия. Серия А]
+    Super League Greece: [Футбол. Греция. Суперлига, Футбол. Греция. Суперлига 1]
+    Süper Lig: [Футбол. Турция. 1-я лига]
